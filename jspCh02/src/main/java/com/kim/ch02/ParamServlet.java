@@ -44,6 +44,7 @@ public class ParamServlet extends HttpServlet {
 		out.println("<br><a href='javascript:history.go(-1)'>다시</a>");
 		out.print("</body></html>");
 		//출력 내용은 요청한 경로로 된 주소창을 갖는 페이지에 출력
+		out.close();
 	}
 
 	/**
