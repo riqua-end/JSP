@@ -9,6 +9,8 @@
 <body>
 
 <%-- <%= %> 는 표현식, 주로 함수를 호출한 결과를 문자열로 출력할때 많이 씀 --%>
+<%-- first페이지에서 이동되면 pageContext내장 객체의 속성 값만 유실됨
+페이지 이동을 하면 새로운 page영역을 갖기 때문임 --%>
 하나의 페이지 속성 : <%=pageContext.getAttribute("name") %><br>
 하나의 요청 속성 :<%=request.getAttribute("name") %><br>
 하나의 세션 속성 :<%=session.getAttribute("name") %><br>
