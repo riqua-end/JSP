@@ -10,6 +10,7 @@
 
 <%
 	//1.Cookie 객체 생성 javax.servlet.http의 Cookie(String name,String value)
+	//쿠키는 서버별로 저장(http://localhost:8181),기본 쿠키인 JSESSIONID는 자동 생성
 	//javax.servlet.http는 임포트 생략
 	Cookie c = new Cookie("id","pinksung");
 	//2.유효기간 설정(초단위로)
