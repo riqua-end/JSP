@@ -35,6 +35,13 @@ pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" :
 
 <%--fmt:formatDate에서 value는 Date객체를 사용하고 기본형은 type=date,dateStyle="default"이다
 pattern에 yyyy년 MM월 dd일 hh시 mm분 ss초 형식으로 사용이 제일 무방함 --%>		
+
+<!-- 특정 시각은 Calendar로 생성후 getTime()으로 변환
+Calendar calendar = new GregorianCalendar(2021,6,20);
+또는 Calendar calendar = Calendar.instance();
+calendar.set(2023,10,22);
+Date date = new Date(calendar.getTime());
+ -->
 </pre>
 </body>
 </html>
