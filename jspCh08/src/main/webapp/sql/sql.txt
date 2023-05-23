@@ -1,0 +1,20 @@
+create table member(
+name varchar2(30),
+userid varchar2(30),
+pwd varchar2(30),
+email varchar2(30),
+phone varchar2(20),
+admin number(1),
+primary key(userid)
+);
+
+insert into member
+values('이소라','sora','1234','gmd@naver.com','010-2222-3333',0);
+insert into member
+values('이소미','somi','1234','gmd@naver.com','010-2222-3333',0);
+insert into member
+values('이소희','sohee','1234','gmd@naver.com','010-2222-3333',0);
+
+commit;
+
+select * from member;
