@@ -96,3 +96,18 @@ finally {
 <a class="btn btn-primary" href="01_allMember.jsp">회원 전체 목록 보기</a>
 </body>
 </html>
+
+<!-- 
+<Resource 
+		name="jdbc/myoracle" 
+		auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="oracle.jdbc.OracleDriver"
+        url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
+        username="scott"
+        password="tiger"
+        maxTotal="20"
+        maxIdle="10"
+        maxWaitMillis="-1"/>
+ -->
+
