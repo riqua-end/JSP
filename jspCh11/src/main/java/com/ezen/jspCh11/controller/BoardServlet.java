@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ezen.jspCh11.command.Action;
-import com.ezen.jspCh11.command.BoardListAction;
 
 @WebServlet("/BoardServlet")
 public class BoardServlet extends HttpServlet {
