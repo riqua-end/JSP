@@ -29,8 +29,6 @@
         <h2 style="text-align:center;">게시글 리스트</h2>
         <table class="table table-bordered table-dark table-hover">
             <thead>
-            	<tr>
-            		<td colspan="5" style="text-align:right;">
                 <tr>
                     <th>번호</th>
                     <th>제목</th>
@@ -49,7 +47,9 @@
                 </tr>
             </tbody>
         </table>
-        <a class="btn btn-primary" href="#" style="text-align:center;">게시글 등록</a>
+        <div class="btn_container">
+        	<a class="btn btn-primary" href="#" style="text-align:center;">게시글 등록</a>
+        </div>
     </div>
 </body>
 </html>

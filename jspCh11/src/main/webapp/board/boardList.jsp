@@ -25,7 +25,41 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-<h3>게시판 목록창을 만들어주는 페이지</h3>
+  <div class="container">
+        <h3 style="text-align:center;margin-top:2rem;">게시판</h3>
+        
+        <table class="table table-bordered table-hover" style="margin-top: 3.5rem!important;margin-bottom:3rem;">
+            <thead class="thead-dark">
+                <tr style="border:1px solid gray;">
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>수정일</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1111111111111111111111</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
+        <div align="right">
+        	<a class="btn btn-dark float-right" href="#">게시글 등록</a>	
+        </div>
+    </div>
+    
 
 </body>
 </html>
