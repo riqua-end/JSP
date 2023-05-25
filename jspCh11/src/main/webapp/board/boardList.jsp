@@ -25,41 +25,67 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-  <div class="container">
-        <h3 style="text-align:center;margin-top:2rem;">게시판</h3>
-        
-        <table class="table table-bordered table-hover" style="margin-top: 3.5rem!important;margin-bottom:3rem;">
-            <thead class="thead-dark">
-                <tr style="border:1px solid gray;">
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>수정일</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>1111111111111111111111</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-            </tbody>
-        </table>
-        <div align="right">
-        	<a class="btn btn-dark float-right" href="#">게시글 등록</a>	
-        </div>
-    </div>
-    
+<%@include file="../include/header.jsp" %>
 
+<div class="container mt-4 mb-4 pl-0" id="mainContent">
+	<div class="row">
+		<div class="col-md-2">
+			<h4 class="wordArtEffect text-success pl-4">메뉴</h4>
+			<nav class="navbar bg-dark navbar-dark container">
+				<!-- 수직 메뉴 -->
+				<button class="navbar-toggler d-md-none" type="button"
+					data-toggle="collapse" data-target="#collapsibleVertical">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse d-md-block" id="collapsibleVertical">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link" href="#">
+						<i class="fas fa-home" style="font-size:30px;color:white;"></i></a></li>
+						<li class="nav-item"><a class="nav-link" href="register">게시물 등록</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">리스트</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">도움말</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div> <!-- col-md-2 -->
+		<div class="col-md-10">
+			<div id="submain">
+				<h4 class="text-center wordArtEffect text-success">게시판 목록</h4>
+				<div>
+					<a class="btn btn-danger float-right mb-2" href="BoardServlet?command=board_write_form">게시글 등록</a>
+				</div>
+				
+				<div class="table-responsive-md"> <!-- table의 RWD -->
+					<table id="boardTable" class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+								<th>조회수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${boardList}" var="board">
+								<tr class="record">
+									<td>${board.num}</td>
+									<td><!-- 글 제목 클릭시 게시글 상세보기 페이지로 넘어감 -->
+										<a href="BoardServlet?command=board_view&num=${board.num}"> ${board.title}</a>
+									</td>
+									<td>${board.name}</td>
+									<td><fmt:formatDate value="${board.writedate}"/></td>
+									<td>${board.readcount}</td>
+								</tr>
+							</c:forEach>
+						</tbody>		
+					</table>
+				</div>
+			</div> <!-- submain -->
+			
+		</div><!-- col-md-10 -->
+	</div>
+</div>
+<%@include file="../include/footer.jsp" %>
 </body>
 </html>

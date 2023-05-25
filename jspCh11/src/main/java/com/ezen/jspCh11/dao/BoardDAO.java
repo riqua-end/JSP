@@ -1,6 +1,7 @@
 package com.ezen.jspCh11.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -57,5 +58,80 @@ public class BoardDAO {
 		}
 		
 		return list;
+	}
+	
+	//insertBoard 게시글 등록 처리
+	public void insertBoard(BoardVO bVo) {
+		
+		String sql = "insert into board(num,name,email,pass,title,content)"
+				+ "values(board_seq.nextval, ?,?,?,?,?)";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null; //PreparedStatement는 Statement를 상속한 하위클래스
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bVo.getName());
+			pstmt.setString(2, bVo.getEmail());
+			pstmt.setString(3, bVo.getPass());
+			pstmt.setString(4, bVo.getTitle());
+			pstmt.setString(5, bVo.getContent());
+			pstmt.executeUpdate(); //insert,delete,update는 executeUpdate로 처리
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt); //다형성으로 하위 클래스인 PreparedStatement를 파라메터로 사용
+		}
+	}
+	
+	//updateReadCount 조회 횟수 업데이트
+	public void updateReadCount(String num) {
+		String sql = "update board set readcount=readcount+1 where num=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			//원래는 pstmt.setInt(1,Integer
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//조회대상 ResultSet를 매핑되는 BoardVO객체로 변환하여 리턴
+	public BoardVO selectOneBoardByNum(String num) {
+		String sql = "select * from board where num = ?";
+		BoardVO bVo = null;		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bVo = new BoardVO();
+				bVo.setNum(rs.getInt("num"));
+				bVo.setName(rs.getString("name"));
+				bVo.setPass(rs.getString("pass"));
+				bVo.setEmail(rs.getString("email"));
+				bVo.setTitle(rs.getString("title"));
+				bVo.setContent(rs.getString("content"));
+				bVo.setWritedate(rs.getTimestamp("writedate"));
+				bVo.setReadcount(rs.getInt("readcount"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally { 
+			DBManager.close(conn, pstmt);
+		}
+		return bVo;
 	}
 }

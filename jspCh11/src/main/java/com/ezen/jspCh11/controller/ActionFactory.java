@@ -2,6 +2,9 @@ package com.ezen.jspCh11.controller;
 
 import com.ezen.jspCh11.command.Action;
 import com.ezen.jspCh11.command.BoardListAction;
+import com.ezen.jspCh11.command.BoardViewAction;
+import com.ezen.jspCh11.command.BoardWriteAction;
+import com.ezen.jspCh11.command.BoardWriteFormAction;
 
 public class ActionFactory {
 	
@@ -30,6 +33,17 @@ public class ActionFactory {
 		//리스트 처리
 		if (command.equals("board_list")) {
 			action = new BoardListAction();
+		}
+		//command="board_write_form" , command가 board_write_form와 같다면
+		//action에 BoardWriteFormAction 빈 객체를 생성해서 대입
+		else if (command.equals("board_write_form")) {
+			action = new BoardWriteFormAction();
+		}
+		else if (command.equals("board_write")) {
+			action = new BoardWriteAction();
+		}
+		else if (command.equals("board_view")) {
+			action = new BoardViewAction();
 		}
 		return action;
 	}
