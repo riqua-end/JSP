@@ -59,7 +59,7 @@
 					<div class="form-group">
 						<label for="wdate">작성일:</label>
 						<input type="text" class="form-control" id="wdate" 
-							 name="writedate" value='<c:out value="${board.writedate}"/>' readonly/>
+							 name="writedate"  value='<fmt:formatDate pattern = "yyyy/MM/dd" value="${board.writedate}"/>' readonly/>
 					</div>
 					<div class="form-group">
 						<label for="rcnt">조회수:</label>
