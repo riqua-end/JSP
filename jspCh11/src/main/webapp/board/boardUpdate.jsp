@@ -16,8 +16,8 @@
 <script src="script/board.js"></script>
 </head>
 <body>
-
 <%@include file="../include/header.jsp" %>
+
 <div class="container mt-4 mb-4 pl-0" id="mainContent">
 	<div class="row">
 		<div class="col-md-2">
@@ -41,16 +41,22 @@
 		</div> <!-- col-md-2 -->
 		<div class="col-md-10"> <!-- 게시물 등록하기 -->
 			<div id="submain">
-				<h4 class="text-center wordArtEffect text-success">게시글 조회</h4>
+				<h4 class="text-center wordArtEffect text-success">게시글 수정</h4>
 				
-				<form action="#" method="post" id="freg" name="frm" role="form">
-					<!-- form에서 name=command에 처리할 비지니스로직 요청을 사용 -->
-					<!-- name속성은 boardVO클래스의 멤버 변수명과 매핑한다 -->
-					<input type="hidden" name="command" value="board_write">
+				<form action="BoardServlet" method="post" id="freg" name="frm" role="form">
+					<!-- 수정창은 조회창처럼 모든 게시 내용을 보여주며 그것을 수정함 -->
+					<!-- 비지니스로직처리를 command 이름으로 보내고 대상을 지정하는 게시글 번호(PrimaryKey)를 숨겨서 보냄 -->
+					<input type="hidden" name="command" value="board_update">
+					<input type="hidden" name="num" value="${board.num}">
 					<div class="form-group">
 						<label for="writer">작성자:</label>
 						<input type="text" class="form-control" id="writer" 
 							 name="name" value='<c:out value="${board.name}"/>' readonly/>
+					</div>
+					<div class="form-group">
+						<label for="pw">비밀번호:</label>
+						<input type="password" class="form-control" id="pw" 
+							 name="pass" placeholder="비밀 번호 입력">
 					</div>
 					<div class="form-group">
 						<label for="email">이메일:</label>
@@ -58,41 +64,29 @@
 							 name="email" value='<c:out value="${board.email}"/>' readonly/>
 					</div>
 					<div class="form-group">
-						<label for="wdate">작성일:</label>
-						<input type="text" class="form-control" id="wdate" 
-							 name="writedate"  value='<fmt:formatDate pattern = "yyyy/MM/dd" value="${board.writedate}"/>' readonly/>
-					</div>
-					<div class="form-group">
-						<label for="rcnt">조회수:</label>
-						<input type="text" class="form-control" id="rcnt" 
-							 name="readcount" value='<c:out value="${board.readcount}"/>' readonly/>
-					</div>
-					<div class="form-group">
 						<label for="title">제목:</label>
 						<input type="text" class="form-control" id="title" 
-							 name="title" value='<c:out value="${board.title}"/>' readonly/>
+							 name="title" value='<c:out value="${board.title}"/>' />
 					</div>
 					<div class="form-group">
 						<label for="content">내용:</label> <!-- textarea는 c:out value값을 <textarea>(여기다 입력)</textarea> -->
 						<textarea class="form-control" id="content" 
-							name="content" rows="15" readonly><c:out value="${board.content}"/></textarea>
+							name="content" rows="15"><c:out value="${board.content}"/></textarea>
 					</div>
+					
+					<br><br>
+					<input class="btn btn-success" type="submit" value="수정" onclick="return boardCheck()">&nbsp;&nbsp;&nbsp;
+					<input class="btn btn-info" type="reset" value="다시 작성">&nbsp;&nbsp;&nbsp;
+					<input class="btn btn-danger" type="button" value="목록" onclick="location.href='BoardServlet?command=board_list'">
 				</form>
 				
 				<br><br>
-				<input type="button" class="btn btn-success" value="게시글 수정"
-					onclick="open_win('BoardServlet?command=board_check_pass_form&num=${board.num}','update')">&nbsp;&nbsp;
-				<input type="button" class="btn btn-danger" value="게시글 삭제"
-					onclick="open_win('BoardServlet?command=board_check_pass_form&num=${board.num}','delete')">&nbsp;&nbsp;
-				<input type="button" class="btn btn-info" value="게시글 리스트"
-					onclick="location.href='BoardServlet?command=board_list'">&nbsp;&nbsp;
-				<input type="button" class="btn btn-primary" value="게시글 등록"
-					onclick="location.href='BoardServlet?command=board_write_form'">
+				
 			</div> <!-- submain -->
 		</div><!-- col-md-10 -->
 	</div><!-- row -->
 </div><!-- main -->
-<%@include file="../include/footer.jsp" %>
 
+<%@include file="../include/footer.jsp" %>
 </body>
 </html>

@@ -1,7 +1,12 @@
 package com.ezen.jspCh11.controller;
 
 import com.ezen.jspCh11.command.Action;
+import com.ezen.jspCh11.command.BoardCheckPassAction;
+import com.ezen.jspCh11.command.BoardCheckPassFormAction;
+import com.ezen.jspCh11.command.BoardDeleteAction;
 import com.ezen.jspCh11.command.BoardListAction;
+import com.ezen.jspCh11.command.BoardUpdateAction;
+import com.ezen.jspCh11.command.BoardUpdateFormAction;
 import com.ezen.jspCh11.command.BoardViewAction;
 import com.ezen.jspCh11.command.BoardWriteAction;
 import com.ezen.jspCh11.command.BoardWriteFormAction;
@@ -45,6 +50,22 @@ public class ActionFactory {
 		else if (command.equals("board_view")) {
 			action = new BoardViewAction();
 		}
+		else if (command.equals("board_check_pass_form")) {
+			action = new BoardCheckPassFormAction();
+		}
+		else if (command.equals("board_check_pass")) {
+			action = new BoardCheckPassAction();
+		}
+		else if (command.equals("board_update_form")) {
+			action = new BoardUpdateFormAction();
+		}
+		else if (command.equals("board_update")) {
+			action = new BoardUpdateAction();
+		}
+		else if (command.equals("board_delete")) {
+			action = new BoardDeleteAction();
+		}
+		
 		return action;
 	}
 }

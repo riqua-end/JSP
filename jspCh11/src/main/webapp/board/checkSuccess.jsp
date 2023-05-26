@@ -26,7 +26,17 @@
 </head>
 <body>
 
-<%response.sendRedirect("BoardServlet?command=board_list"); %>
-<!-- 경로?쿼리스트링은 get방식임 -->
+<script>
+//name은 팝업창의 이름
+if (window.name == "update"){
+	window.opener.parent.location.href = "BoardServlet?command=board_update_form&num=${param.num}";
+	//opener객체는 현재 열려있는 팝업창,parent는 팝업창의 부모이므로 원래 윈도우창
+}
+else if (window.name == 'delete') {
+	alert("삭제되었습니다.");
+	window.opener.parent.location.href = "BoardServlet?command=board_delete&num=${param.num}";
+}
+window.close();
+</script>
 </body>
 </html>

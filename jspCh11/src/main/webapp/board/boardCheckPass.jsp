@@ -23,10 +23,28 @@
 	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <!--google icon -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="script/board.js"></script>
 </head>
 <body>
 
-<%response.sendRedirect("BoardServlet?command=board_list"); %>
-<!-- 경로?쿼리스트링은 get방식임 -->
+<div style="width:60%;margin:auto;">
+	<h1>비밀번호 확인</h1>
+	<form action="BoardServlet" method="get" name="frm">
+		<input type="hidden" name="command" value="board_check_pass">
+		<!-- parameter로 보낸값은 EL에서 param내장 객체 사용 -->
+		<!-- hidden도 서버로 보내짐 -->
+		<input type="hidden" name="num" value="${param.num}">
+		<table style="width:80%">
+			<tr>
+				<th>비밀번호</th>
+				<td><input type="password" name="pass" size="20"></td>
+			</tr>
+		</table>
+		<br><input type="submit" value="확 인"
+			onclick="return passCheck()">	<br><br>${message} <!-- setAttribute로 지정한 값 -->	
+	</form> 
+</div>
+
+
 </body>
 </html>
